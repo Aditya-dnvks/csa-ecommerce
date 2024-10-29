@@ -4,7 +4,7 @@ import viteLogo from "/vite.svg";
 import Header from "./header";
 import Form from "./components/form";
 import Home from "./components/home";
-import About from "./components/about";
+import About from "./components/login";
 import Contact from "./components/contact";
 
 function App() {
@@ -13,7 +13,7 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
+        <Route path="/login" element={<About />} />
         <Route path="/form" element={<Form />} />
         <Route path="/contact" element={<Contact />} />
       </Routes>
