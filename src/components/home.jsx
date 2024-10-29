@@ -19,6 +19,7 @@ const Home = () => {
       const finalFethcData = await fetchedData.json();
 
       console.log(finalFethcData, "from Fecth API");
+      console.log("Feature added by Karimulla - Login feature");
     }
     console.log("useEffect triggered in componentDidMount");
     console.log("I can do API calls here");
