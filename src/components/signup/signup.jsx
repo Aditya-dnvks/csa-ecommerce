@@ -1,64 +1,7 @@
 import React, { useState } from "react";
-import Error from "./error";
-import App from "../App";
 import { Link } from "react-router-dom";
 
-// class Form extends React.Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {
-//       value1: "",
-//     };
-//     console.log("This is constructor");
-//   }
-
-//   handleChange1 = (event) => {
-//     this.setState({ value1: event.target.value });
-//   };
-
-//   componentDidMount() {
-//     console.log("mounting");
-//   }
-
-//   componentDidUpdate() {
-//     console.log("state updated");
-//   }
-
-//   render() {
-//     console.log("this is render");
-//     return (
-//       <div>
-//         <form>
-//           <div>
-//             <label>
-//               Name
-//               <input
-//                 type="text"
-//                 onChange={this.handleChange1}
-//                 value={this.state.value1}
-//                 style={{
-//                   borderRadius: 10,
-//                   padding: 10,
-//                   borderWidth: 1,
-//                   borderColor: "grey",
-//                   margin: 5,
-//                 }}
-//               />
-//             </label>
-
-//             {/* {this.state.value1.length > 5 ? <Error /> : null} */}
-//             {this.state.value1.length > 5 && <Error />}
-
-//             <button className="btn btn-primary"> Submit </button>
-//           </div>
-//         </form>
-//         <p className="bg-warning">{this.state.value1}</p>
-//       </div>
-//     );
-//   }
-// }
-
-const Form = () => {
+const Signup = () => {
   const [name, updateName] = useState("");
   const [email, updateEmail] = useState("");
   const [dob, updateDob] = useState("");
@@ -107,7 +50,6 @@ const Form = () => {
             {name.length > 10 && (
               <p className="text-danger"> *Length is greater than 10</p>
             )}
-            {name.length > 10 && <Error />}
           </label>
           <label>
             Email
@@ -143,15 +85,12 @@ const Form = () => {
             />
           </label>
 
-          {/* {this.state.value1.length > 5 ? <Error /> : null} */}
-
           <button
             className="btn btn-primary"
             type="submit"
             onClick={handleSubmit}
           >
-            {" "}
-            Submit{" "}
+            Submit
           </button>
         </div>
       </form>
@@ -160,4 +99,4 @@ const Form = () => {
 };
 
 //stylesheet
-export default Form;
+export default Signup;
