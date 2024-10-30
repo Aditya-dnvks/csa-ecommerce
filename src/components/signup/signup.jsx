@@ -1,99 +1,101 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-
+import "./signup.css";
+import * as Form from "@radix-ui/react-form";
 const Signup = () => {
-  const [name, updateName] = useState("");
-  const [email, updateEmail] = useState("");
-  const [dob, updateDob] = useState("");
-
-  const handleChange1 = (e) => {
-    updateName(e.target.value); /// this line is changing name = Karimulla to input entered
-    console.log(e.target.value);
-  };
-
-  const handleChange2 = (e) => {
-    updateEmail(e.target.value); /// this line is changing name = Karimulla to input entered
-    console.log(e.target.value);
-  };
-
-  const handleChange3 = (e) => {
-    updateDob(e.target.value); /// this line is changing name = Karimulla to input entered
-    console.log(e.target.value);
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    console.log("form data: ", { name, email, dob });
-    console.log("submitted");
-  };
-
   return (
-    <div className="d-flex flex-column justify-content-center align-items-center vh-100">
-      <Link to="/"> Go to Home</Link>
-      <form>
-        <div className="d-flex flex-column justify-content-center align-items-center bg-warning vh-50 p-5 rounded">
-          <label>
-            Name
-            <input
-              type="text"
-              onChange={handleChange1}
-              value={name}
-              style={{
-                borderRadius: 10,
-                padding: 10,
-                borderWidth: 1,
-                borderColor: "grey",
-                margin: 5,
-              }}
-              placeholder="Enter Name"
-            />
-            {name.length > 10 && (
-              <p className="text-danger"> *Length is greater than 10</p>
-            )}
-          </label>
-          <label>
-            Email
-            <input
-              type="email"
-              onChange={handleChange2}
-              value={email}
-              style={{
-                borderRadius: 10,
-                padding: 10,
-                borderWidth: 1,
-                borderColor: "grey",
-                margin: 5,
-              }}
-              placeholder="Enter Email"
-            />
-          </label>
-
-          <label>
-            Date of Birth
-            <input
-              type="date"
-              onChange={handleChange3}
-              value={dob}
-              style={{
-                borderRadius: 10,
-                padding: 10,
-                borderWidth: 1,
-                borderColor: "grey",
-                margin: 5,
-              }}
-              placeholder="Enter DOB"
-            />
-          </label>
-
-          <button
-            className="btn btn-primary"
-            type="submit"
-            onClick={handleSubmit}
+    <div className="d-flex flex-row justify-content-around align-items-center bg-container">
+      <img src="https://img.freepik.com/free-vector/sign-concept-illustration_114360-5267.jpg" />
+      <Form.Root className="FormRoot">
+        <Form.Field className="FormField" name="firstname">
+          <div
+            style={{
+              display: "flex",
+              alignItems: "baseline",
+              justifyContent: "space-between",
+            }}
           >
-            Submit
+            <Form.Label className="FormLabel">First Name</Form.Label>
+            <Form.Message className="FormMessage" match="valueMissing">
+              Please enter your First Name
+            </Form.Message>
+          </div>
+          <Form.Control asChild>
+            <input className="Input" type="text" required />
+          </Form.Control>
+        </Form.Field>
+        <Form.Field className="FormField" name="lasttname">
+          <div
+            style={{
+              display: "flex",
+              alignItems: "baseline",
+              justifyContent: "space-between",
+            }}
+          >
+            <Form.Label className="FormLabel">Last Name</Form.Label>
+            <Form.Message className="FormMessage" match="valueMissing">
+              Please enter your Last Name
+            </Form.Message>
+          </div>
+          <Form.Control asChild>
+            <input className="Input" type="text" required />
+          </Form.Control>
+        </Form.Field>
+        <Form.Field className="FormField" name="phonenumber">
+          <div
+            style={{
+              display: "flex",
+              alignItems: "baseline",
+              justifyContent: "space-between",
+            }}
+          >
+            <Form.Label className="FormLabel">Phone Number</Form.Label>
+            <Form.Message className="FormMessage" match="valueMissing">
+              Please enter your Mobile Number
+            </Form.Message>
+          </div>
+          <Form.Control asChild>
+            <input className="Input" type="tel" required />
+          </Form.Control>
+        </Form.Field>
+        <Form.Field className="FormField" name="email">
+          <div
+            style={{
+              display: "flex",
+              alignItems: "baseline",
+              justifyContent: "space-between",
+            }}
+          >
+            <Form.Label className="FormLabel">Email</Form.Label>
+            <Form.Message className="FormMessage" match="valueMissing">
+              Please enter your email
+            </Form.Message>
+          </div>
+          <Form.Control asChild>
+            <input className="Input" type="email" required />
+          </Form.Control>
+        </Form.Field>
+        <Form.Field className="FormField" name="password">
+          <div
+            style={{
+              display: "flex",
+              alignItems: "baseline",
+              justifyContent: "space-between",
+            }}
+          >
+            <Form.Label className="FormLabel">Password</Form.Label>
+            <Form.Message className="FormMessage" match="valueMissing">
+              Enter the password
+            </Form.Message>
+          </div>
+          <Form.Control asChild>
+            <input className="Input" type="password" required />
+          </Form.Control>
+        </Form.Field>
+        <Form.Submit asChild>
+          <button className="Button" style={{ marginTop: 10 }}>
+            Login
           </button>
-        </div>
-      </form>
+        </Form.Submit>
+      </Form.Root>
     </div>
   );
 };
