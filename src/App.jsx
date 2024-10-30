@@ -1,11 +1,10 @@
-import React, { useState } from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import viteLogo from "/vite.svg";
+import React from "react";
+import { Route, Routes } from "react-router-dom";
 import Header from "./header";
-import Form from "./components/form";
-import Home from "./components/home";
-import About from "./components/about";
-import Contact from "./components/contact";
+import Home from "./components/home/home";
+import Login from "./components/login/login";
+import Cart from "./components/cart/cart";
+import Signup from "./components/signup/signup";
 
 function App() {
   return (
@@ -13,9 +12,9 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/form" element={<Form />} />
-        <Route path="/contact" element={<Contact />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/cart" element={<Cart />} />
       </Routes>
     </>
   );
