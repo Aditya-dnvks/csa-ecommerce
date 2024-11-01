@@ -1,10 +1,28 @@
+import { Button, Heading, TextField } from "@radix-ui/themes";
 import "./signup.css";
 import * as Form from "@radix-ui/react-form";
 const Signup = () => {
   return (
     <div className="d-flex flex-row justify-content-around align-items-center bg-container">
       <img src="https://img.freepik.com/free-vector/sign-concept-illustration_114360-5267.jpg" />
-      <Form.Root className="FormRoot">
+      <form className="FormRoot">
+        <Heading className="text-center"> Sign Up Form</Heading>
+        <TextField.Root
+          placeholder="First name"
+          className="m-4"
+        ></TextField.Root>
+        <TextField.Root
+          placeholder="Last name"
+          className="m-4"
+        ></TextField.Root>
+        <TextField.Root placeholder="Email" className="m-4"></TextField.Root>
+        <TextField.Root placeholder="Password" className="m-4"></TextField.Root>
+        <div className="text-center">
+          <Button>Sign Up</Button>
+        </div>
+      </form>
+
+      {/* <Form.Root>
         <Form.Field className="FormField" name="firstname">
           <div
             style={{
@@ -90,12 +108,8 @@ const Signup = () => {
             <input className="Input" type="password" required />
           </Form.Control>
         </Form.Field>
-        <Form.Submit asChild>
-          <button className="Button" style={{ marginTop: 10 }}>
-            Login
-          </button>
-        </Form.Submit>
-      </Form.Root>
+        <Form.Submit asChild></Form.Submit>
+      </Form.Root> */}
     </div>
   );
 };
