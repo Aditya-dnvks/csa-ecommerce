@@ -1,24 +1,63 @@
 import { Button, Heading, TextField } from "@radix-ui/themes";
 import "./signup.css";
-import * as Form from "@radix-ui/react-form";
+import { useContext, useState } from "react";
+import { AuthContext } from "../Auth/auth-context";
+import { useNavigate } from "react-router-dom";
+
 const Signup = () => {
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+    firstName: "",
+    lastName: "",
+  });
+
+  const navigate = useNavigate();
+
+  const { signUp } = useContext(AuthContext);
+
+  const onHandleChange = (event) => {
+    const name = event.target.name;
+    const value = event.target.value;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+    signUp(formData);
+  };
   return (
     <div className="d-flex flex-row justify-content-around align-items-center bg-container">
       <img src="https://img.freepik.com/free-vector/sign-concept-illustration_114360-5267.jpg" />
-      <form className="FormRoot">
+      <form className="FormRoot" onSubmit={submitHandler}>
         <Heading className="text-center"> Sign Up Form</Heading>
         <TextField.Root
           placeholder="First name"
           className="m-4"
+          name="firstName"
+          onChange={onHandleChange}
         ></TextField.Root>
         <TextField.Root
           placeholder="Last name"
           className="m-4"
+          name="lastName"
+          onChange={onHandleChange}
         ></TextField.Root>
-        <TextField.Root placeholder="Email" className="m-4"></TextField.Root>
-        <TextField.Root placeholder="Password" className="m-4"></TextField.Root>
+        <TextField.Root
+          placeholder="Email"
+          className="m-4"
+          name="email"
+          onChange={onHandleChange}
+        ></TextField.Root>
+        <TextField.Root
+          placeholder="Password"
+          className="m-4"
+          name="password"
+          type="password"
+          onChange={onHandleChange}
+        ></TextField.Root>
         <div className="text-center">
-          <Button>Sign Up</Button>
+          <Button type="submit">Sign Up</Button>
         </div>
       </form>
 

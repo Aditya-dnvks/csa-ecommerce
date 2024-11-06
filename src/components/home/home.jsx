@@ -4,11 +4,15 @@ import "./home.css";
 // import { Button } from "@mui/material";
 import { Form, Button } from "react-bootstrap";
 import { Rating, Typography } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
+import { AuthContext } from "../Auth/auth-context";
+import Login from "../login/login";
 
 const Home = () => {
   const [value, setValue] = useState(0);
+
+  const { isLogin } = useContext(AuthContext);
 
   useEffect(() => {
     async function fetchData() {
@@ -17,19 +21,20 @@ const Home = () => {
 
       const fetchedData = await fetch("https://fakestoreapi.com/products"); // in-built from Web API
       const finalFethcData = await fetchedData.json();
-
-      console.log(finalFethcData, "from Fecth API");
-      console.log("Feature added by Karimulla - Login feature");
     }
-    console.log("useEffect triggered in componentDidMount");
-    console.log("I can do API calls here");
+
     fetchData();
   }, []); /// this is similar to componentDidMount
 
   return (
-    <div className="bg-secondary w-50 p-4">
-      <h1> I have redered this many times : {value}</h1>
-      <button onClick={() => setValue(value + 1)}> Addd</button>
+    <div>
+      {!isLogin ? (
+        <Login />
+      ) : (
+        <div>
+          <p> Welcome to Home page</p>
+        </div>
+      )}
     </div>
   );
 };
