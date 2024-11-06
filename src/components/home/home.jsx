@@ -18,9 +18,6 @@ const Home = () => {
     async function fetchData() {
       const resp = await axios.get("https://fakestoreapi.com/products"); // 3rd Paarty
       console.log(resp.data, "FETCHED DATA from Axios");
-
-      const fetchedData = await fetch("https://fakestoreapi.com/products"); // in-built from Web API
-      const finalFethcData = await fetchedData.json();
     }
 
     fetchData();

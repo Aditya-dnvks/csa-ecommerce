@@ -1,15 +1,21 @@
 import axios from "axios";
 import { enqueueSnackbar } from "notistack";
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [isLogin, setLogin] = useState(false); //local state management
+  const [isLogin, setLogin] = useState(localStorage.getItem("isLogin")); //local state management
   const navigate = useNavigate();
 
   const API_URL = "https://the-techie-crud.onrender.com";
+
+  useEffect(() => {
+    !localStorage.getItem("isLogin")
+      ? localStorage.setItem("isLogin", JSON.stringify(isLogin))
+      : null;
+  }, []);
 
   const login = async (formData) => {
     const usersData = localStorage.getItem("users")
@@ -22,6 +28,7 @@ export const AuthProvider = ({ children }) => {
 
     if (filteredArr.length > 0) {
       setLogin(true);
+      localStorage.setItem("isLogin", JSON.stringify(true));
       enqueueSnackbar("Login successful!", { variant: "success" });
     } else {
       enqueueSnackbar("Wrong email or Password. Please re-check", {
@@ -32,6 +39,8 @@ export const AuthProvider = ({ children }) => {
 
   const logout = async () => {
     setLogin(false);
+    localStorage.setItem("isLogin", JSON.stringify(false));
+    enqueueSnackbar("Logout successful!", { variant: "info" });
   };
 
   const signUp = async (formData) => {

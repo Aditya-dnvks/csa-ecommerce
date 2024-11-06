@@ -31,8 +31,11 @@ const Header = () => {
           </li>
         </ul>
       ) : (
-        <ul className="d-flex justify-content-end align-items-center">
-          <li className="m-3" style={styles.listStyles}>
+        <ul
+          className="d-flex justify-content-end align-items-center"
+          style={{ listStyle: "none" }}
+        >
+          <li className="m-3">
             <Link to="/" style={styles.listStyles}>
               Home
             </Link>
