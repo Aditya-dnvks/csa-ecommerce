@@ -45,15 +45,16 @@ const Login = () => {
           name="password"
           type="password"
         ></TextField.Root>
-        <p className="text-center">
+
+        <div className="text-center">
+          <Button type="submit">Login</Button>
+        </div>
+        <p className="text-center mt-2">
           Don't have an account?{" "}
           <span>
             <Link to="/signup">Sign up</Link>
           </span>
         </p>
-        <div className="text-center">
-          <Button type="submit">Login</Button>
-        </div>
       </form>
     </div>
   );

@@ -5,8 +5,13 @@ import { useNavigate } from "react-router-dom";
 
 export const AuthContext = createContext();
 
+// react context
+// redux -- complex -re ducers, action
+
 export const AuthProvider = ({ children }) => {
-  const [isLogin, setLogin] = useState(localStorage.getItem("isLogin")); //local state management
+  const [isLogin, setLogin] = useState(
+    JSON.parse(localStorage.getItem("isLogin"))
+  ); //local state management
   const navigate = useNavigate();
 
   const API_URL = "https://the-techie-crud.onrender.com";
@@ -23,7 +28,9 @@ export const AuthProvider = ({ children }) => {
       : [];
 
     const filteredArr = usersData.filter((each) => {
-      return each.email === formData.email;
+      return (
+        each.email === formData.email && each.password === formData.password
+      );
     });
 
     if (filteredArr.length > 0) {
@@ -41,6 +48,7 @@ export const AuthProvider = ({ children }) => {
     setLogin(false);
     localStorage.setItem("isLogin", JSON.stringify(false));
     enqueueSnackbar("Logout successful!", { variant: "info" });
+    navigate("/");
   };
 
   const signUp = async (formData) => {

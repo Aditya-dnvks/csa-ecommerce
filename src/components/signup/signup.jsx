@@ -2,7 +2,7 @@ import { Button, Heading, TextField } from "@radix-ui/themes";
 import "./signup.css";
 import { useContext, useState } from "react";
 import { AuthContext } from "../Auth/auth-context";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Signup = () => {
   const [formData, setFormData] = useState({
@@ -59,6 +59,13 @@ const Signup = () => {
         <div className="text-center">
           <Button type="submit">Sign Up</Button>
         </div>
+
+        <p className="text-center mt-2">
+          Already have an account?{" "}
+          <span>
+            <Link to="/">Login</Link>
+          </span>
+        </p>
       </form>
 
       {/* <Form.Root>
