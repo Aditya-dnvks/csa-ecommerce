@@ -1,56 +1,41 @@
-import { Link } from "react-router-dom";
 import "./home.css";
-// import { Alert, Button, Card } from "react-bootstrap";
-// import { Button } from "@mui/material";
-import { Form, Button } from "react-bootstrap";
-import { Rating, Typography } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
+import { AuthContext } from "../Auth/auth-context";
+import Login from "../login/login";
+import Products from "../products/Products.JSX";
+import { Heading } from "@radix-ui/themes";
+import CarouselItem from "./carousel";
 
 const Home = () => {
-  const [value, setValue] = useState(0);
+  const [productsData, setProducts] = useState([]);
+
+  const { isLogin } = useContext(AuthContext);
 
   useEffect(() => {
-    async function fetchData() {
-      const resp = await axios.get("https://fakestoreapi.com/products"); // 3rd Paarty
+    document.title = "CSA Bazaar";
+    const fetchData = async () => {
+      const resp = await axios.get("https://fakestoreapi.com/products");
       console.log(resp.data, "FETCHED DATA from Axios");
+      setProducts(resp.data);
+    };
 
-      const fetchedData = await fetch("https://fakestoreapi.com/products"); // in-built from Web API
-      const finalFethcData = await fetchedData.json();
-
-      console.log(finalFethcData, "from Fecth API");
-      console.log("Feature added by Karimulla - Login feature");
-    }
-    console.log("useEffect triggered in componentDidMount");
-    console.log("I can do API calls here");
     fetchData();
-  }, []); /// this is similar to componentDidMount
+  }, []);
 
   return (
-    <div className="bg-secondary w-50 p-4">
-      <h1> I have redered this many times : {value}</h1>
-      <button onClick={() => setValue(value + 1)}> Addd</button>
+    <div>
+      {!isLogin ? (
+        <Login />
+      ) : (
+        <div>
+          <CarouselItem />
+          <Heading className="text-center"> Our Products:</Heading>
+          <Products products={productsData} />
+        </div>
+      )}
     </div>
   );
 };
 
 export default Home;
-
-const style = {
-  submitButton: {
-    borderRadius: 20,
-    backgroundColor: "yellow",
-    padding: 10,
-    borderWidth: 0,
-  },
-  enrollButton: {
-    borderRadius: 20,
-    backgroundColor: "green",
-    padding: 10,
-    borderWidth: 0,
-  },
-};
-
-// in-line
-// internal --- Big projects---------
-// external-css --- small projects
