@@ -3,6 +3,8 @@ import "./signup.css";
 import { useContext, useState } from "react";
 import { AuthContext } from "../Auth/auth-context";
 import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+import { enqueueSnackbar } from "notistack";
 
 const Signup = () => {
   const [formData, setFormData] = useState({
@@ -11,6 +13,8 @@ const Signup = () => {
     firstName: "",
     lastName: "",
   });
+
+  console.log("new feature by heamnth");
 
   const navigate = useNavigate();
 
@@ -22,10 +26,27 @@ const Signup = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
-    signUp(formData);
+
+    if (formData.password.length < 4) {
+      enqueueSnackbar("Password is too short", { variant: "error" });
+      return;
+    }
+    /// register a user --- > new data to be posted in database
+    try {
+      const response = await axios.post(
+        "http://localhost:3000/user/register",
+        formData,
+        { ContentType: "application/json" }
+      );
+      enqueueSnackbar("User registered successfully", { variant: "success" });
+      navigate("/");
+    } catch (err) {
+      enqueueSnackbar(err.message, { variant: "error" });
+    }
   };
+
   return (
     <div className="d-flex flex-row justify-content-around align-items-center bg-container">
       <img src="https://img.freepik.com/free-vector/sign-concept-illustration_114360-5267.jpg" />
@@ -48,6 +69,7 @@ const Signup = () => {
           className="m-4"
           name="email"
           onChange={onHandleChange}
+          type="email"
         ></TextField.Root>
         <TextField.Root
           placeholder="Password"

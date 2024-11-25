@@ -2,12 +2,16 @@ import { Button, Heading, TextField } from "@radix-ui/themes";
 import "./login.css";
 import { useContext, useState } from "react";
 import { AuthContext } from "../Auth/auth-context";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+import { enqueueSnackbar } from "notistack";
 const Login = () => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
+
+  const navigate = useNavigate();
 
   const { login, setLogin } = useContext(AuthContext);
 
@@ -17,10 +21,27 @@ const Login = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
-    console.log(formData, "Form submitted succesfully");
-    login(formData);
+    // console.log(formData, "Form submitted succesfully");
+    // login(formData);
+
+    if (formData.password.length < 4) {
+      enqueueSnackbar("Password is too short", { variant: "error" });
+      return;
+    }
+    /// login a user --- > check in database and validation
+    try {
+      const response = await axios.post(
+        "http://localhost:3000/user/login",
+        formData,
+        { ContentType: "application/json" }
+      );
+      enqueueSnackbar("User Login successfully", { variant: "success" });
+      navigate("/");
+    } catch (err) {
+      enqueueSnackbar(err.message, { variant: "error" });
+    }
   };
 
   return (
