@@ -9,76 +9,72 @@ export const AuthContext = createContext();
 // redux -- complex -re ducers, action
 
 export const AuthProvider = ({ children }) => {
-  const [isLogin, setLogin] = useState(
-    JSON.parse(localStorage.getItem("isLogin"))
-  ); //local state management
-  const navigate = useNavigate();
+  // ch.email === formData.email && each.password === formData.password
+  //     );
+  //   });
 
-  const API_URL = "https://the-techie-crud.onrender.com";
+  //   if (filteredArr.length > 0) {
+  //     setLogin(true);
+  //     localStorage.setItem("isLogin", JSON.stringify(true));
+  //     enqueueSnackbar("Login successful!", { variant: "success" });
+  //   } else {
+  //     econst [isLogin, setLogin] = useState(
+  //   JSON.parse(localStorage.getItem("isLogin"))
+  // ); //local state management
+  // const navigate = useNavigate();
 
-  useEffect(() => {
-    !localStorage.getItem("isLogin")
-      ? localStorage.setItem("isLogin", JSON.stringify(isLogin))
-      : null;
-  }, []);
+  // const API_URL = "https://the-techie-crud.onrender.com";
 
-  const login = async (formData) => {
-    const usersData = localStorage.getItem("users")
-      ? JSON.parse(localStorage.getItem("users"))
-      : [];
+  // useEffect(() => {
+  //   !localStorage.getItem("isLogin")
+  //     ? localStorage.setItem("isLogin", JSON.stringify(isLogin))
+  //     : null;
+  // }, []);
 
-    const filteredArr = usersData.filter((each) => {
-      return (
-        each.email === formData.email && each.password === formData.password
-      );
-    });
+  // const login = async (formData) => {
+  //   const usersData = localStorage.getItem("users")
+  //     ? JSON.parse(localStorage.getItem("users"))
+  //     : [];
 
-    if (filteredArr.length > 0) {
-      setLogin(true);
-      localStorage.setItem("isLogin", JSON.stringify(true));
-      enqueueSnackbar("Login successful!", { variant: "success" });
-    } else {
-      enqueueSnackbar("Wrong email or Password. Please re-check", {
-        variant: "error",
-      });
-    }
-  };
+  //   const filteredArr = usersData.filter((each) => {
+  //     return (
+  //       eanqueueSnackbar("Wrong email or Password. Please re-check", {
+  //       variant: "error",
+  //     });
+  //   }
+  // };
 
-  const logout = async () => {
-    setLogin(false);
-    localStorage.setItem("isLogin", JSON.stringify(false));
-    enqueueSnackbar("Logout successful!", { variant: "info" });
-    navigate("/");
-  };
+  // const logout = async () => {
+  //   setLogin(false);
+  //   localStorage.setItem("isLogin", JSON.stringify(false));
+  //   enqueueSnackbar("Logout successful!", { variant: "info" });
+  //   navigate("/");
+  // };
 
-  const signUp = async (formData) => {
-    const { email } = formData;
+  // const signUp = async (formData) => {
+  //   const { email } = formData;
 
-    const usersData = localStorage.getItem("users")
-      ? JSON.parse(localStorage.getItem("users"))
-      : [];
+  //   const usersData = localStorage.getItem("users")
+  //     ? JSON.parse(localStorage.getItem("users"))
+  //     : [];
 
-    const filteredArr = usersData.filter((each) => {
-      return each.email === email;
-    });
+  //   const filteredArr = usersData.filter((each) => {
+  //     return each.email === email;
+  //   });
 
-    if (filteredArr.length > 0) {
-      enqueueSnackbar("User Already exist", { variant: "error" });
-      return;
-    } else {
-      usersData.push(formData);
-      console.log(usersData, "after pushing");
-      localStorage.setItem("users", JSON.stringify(usersData));
-      enqueueSnackbar("Account created successfully. you can login now!", {
-        variant: "success",
-      });
-      navigate("/");
-    }
-  };
+  //   if (filteredArr.length > 0) {
+  //     enqueueSnackbar("User Already exist", { variant: "error" });
+  //     return;
+  //   } else {
+  //     usersData.push(formData);
+  //     console.log(usersData, "after pushing");
+  //     localStorage.setItem("users", JSON.stringify(usersData));
+  //     enqueueSnackbar("Account created successfully. you can login now!", {
+  //       variant: "success",
+  //     });
+  //     navigate("/");
+  //   }
+  // };
 
-  return (
-    <AuthContext.Provider value={{ login, setLogin, isLogin, signUp, logout }}>
-      {children}
-    </AuthContext.Provider>
-  );
+  return <AuthContext.Provider value={{}}>{children}</AuthContext.Provider>;
 };

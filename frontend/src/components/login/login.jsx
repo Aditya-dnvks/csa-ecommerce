@@ -1,7 +1,7 @@
 import { Button, Heading, TextField } from "@radix-ui/themes";
 import "./login.css";
 import { useContext, useState } from "react";
-import { AuthContext } from "../Auth/auth-context";
+// import { AuthContext } from "../Auth/auth-context";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { enqueueSnackbar } from "notistack";
@@ -13,7 +13,7 @@ const Login = () => {
 
   const navigate = useNavigate();
 
-  const { login, setLogin } = useContext(AuthContext);
+  // const { login, setLogin } = useContext(AuthContext);
 
   const onHandleChange = (event) => {
     const name = event.target.name;
@@ -38,6 +38,7 @@ const Login = () => {
         { ContentType: "application/json" }
       );
       enqueueSnackbar("User Login successfully", { variant: "success" });
+      localStorage.setItem("token", response.data.jwtToken);
       navigate("/");
     } catch (err) {
       enqueueSnackbar(err.message, { variant: "error" });

@@ -10,7 +10,8 @@ import NotFound from "./components/not-found/not-found";
 import ProductDetails from "./components/product-details/product-details";
 
 function App() {
-  const { isLogin, logout } = useContext(AuthContext);
+  const isLogin = localStorage.getItem("token");
+  console.log(isLogin);
   return (
     <>
       <Header />

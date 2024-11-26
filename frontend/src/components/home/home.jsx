@@ -13,7 +13,7 @@ const Home = () => {
   const [productsData, setProducts] = useState([]);
   const [loader, setLoader] = useState(true);
 
-  const { isLogin } = useContext(AuthContext);
+  const isLogin = localStorage.getItem("token"); // null --- "null"
 
   const passwords = ["fff", "tyyy", "tyhrtyh", "ythtyhtyjyj", "htyjhtyj"];
 
@@ -55,21 +55,31 @@ const Home = () => {
 
   const postProduct = async () => {
     try {
-      const response = await axios.post("http://localhost:3000/products/", {
-        title: "Mens Cotton Jacket",
-        price: 55.99,
-        description:
-          "great outerwear jackets for Spring/Autumn/Winter, suitable for many occasions, such as working, hiking, camping, mountain/rock climbing, cycling, traveling or other outdoors. Good gift choice for you or your family member. A warm hearted love to Father, husband or son in this thanksgiving or Christmas Day.",
-        category: "men's clothing",
-        image: "https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg",
-        rating: {
-          rate: 4.7,
-          count: 500,
+      const token = localStorage.getItem("token");
+      const response = await axios.post(
+        "http://localhost:3000/products/",
+        {
+          title: "Mens Cotton Jacket",
+          price: 55.99,
+          description:
+            "great outerwear jackets for Spring/Autumn/Winter, suitable for many occasions, such as working, hiking, camping, mountain/rock climbing, cycling, traveling or other outdoors. Good gift choice for you or your family member. A warm hearted love to Father, husband or son in this thanksgiving or Christmas Day.",
+          category: "men's clothing",
+          image: "https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg",
+          rating: {
+            rate: 4.7,
+            count: 500,
+          },
         },
-        ContentType: "application/json", //request headers
-      });
+        {
+          headers: {
+            authorization: `Bearer ${token}`,
+          },
+          ContentType: "application/json", //request headers
+        }
+      );
 
-      console.log(response);
+      console.log(response.data);
+      enqueueSnackbar("Product added succesfully", { variant: "success" });
     } catch (error) {
       console.error(error.message);
     }
