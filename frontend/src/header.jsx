@@ -1,11 +1,18 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import reactLogo from "./assets/react.svg";
-import { useContext } from "react";
-import { AuthContext } from "./components/Auth/auth-context";
 import { Heading } from "@radix-ui/themes";
+import { enqueueSnackbar } from "notistack";
 
 const Header = () => {
-  const { isLogin, logout } = useContext(AuthContext);
+  const isLogin = localStorage.getItem("token");
+  const navigate = useNavigate();
+
+  const logout = () => {
+    localStorage.removeItem("token");
+    enqueueSnackbar("Logout successful!", { variant: "info" });
+    navigate("/");
+  };
+
   return (
     <nav className="bg-dark d-flex justify-content-between align-items-center">
       <div className="d-flex align-items-center justify-content-around gap-2">

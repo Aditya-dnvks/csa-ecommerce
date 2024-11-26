@@ -1,5 +1,8 @@
 const userSchema = require("../model/userModel");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+// REPL -  Read, Evaluate, Perform, Loop
+require("dotenv").config();
 
 const userRegistration = async (req, res) => {
   const existingUser = await userSchema.findOne({ email: req.body.email });
@@ -31,10 +34,19 @@ const userLogin = async (req, res) => {
     return;
   }
 
-  const compare = bcrypt.compare(req.body.email, existingUser.password);
+  const compare = await bcrypt.compare(
+    req.body.password,
+    existingUser.password
+  );
+
+  const jwtToken = await jwt.sign(req.body.email, process.env.JWT_SECRET_KEY);
+  // jwt token creaets
+  // uuid ---> v4
+  // password genertaor --->
+  // crytpo --- >
 
   if (compare) {
-    res.status(200).send("user login success"); // JWT will be sent to brwoser for only one time
+    res.send({ jwtToken: jwtToken }); // JWT will be sent to brwoser for only one time
   } else {
     res.status(404).send("Passwords doesnt match");
   }
