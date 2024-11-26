@@ -5,7 +5,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 const CartDetails = (props) => {
   const { cartItem, addQuantity, removeQuantity, removeItem } = props;
 
-  const { id, quantity, image, title, price } = cartItem;
+  const { _id, quantity, image, title, price } = cartItem;
 
   return (
     <div className="border border-secondary rounded d-flex justify-content-between align-items-center w-100 p-3 gap-4">
@@ -16,12 +16,12 @@ const CartDetails = (props) => {
           <div className="d-flex">
             <Button
               variant="outline"
-              onClick={() => removeQuantity(id, quantity)}
+              onClick={() => removeQuantity(_id, quantity)}
             >
               -
             </Button>
             <Typography className="mx-3"> Qty: {quantity}</Typography>
-            <Button variant="outline" onClick={() => addQuantity(id)}>
+            <Button variant="outline" onClick={() => addQuantity(_id)}>
               +
             </Button>
           </div>
@@ -34,7 +34,7 @@ const CartDetails = (props) => {
 
       <DeleteIcon
         style={{ height: 30, width: 30 }}
-        onClick={() => removeItem(id)}
+        onClick={() => removeItem(_id)}
       />
     </div>
   );

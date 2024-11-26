@@ -6,12 +6,12 @@ import { useLocation } from "react-router-dom";
 
 const ProductDetails = () => {
   const { state } = useLocation(); //useParams()
-  const { id, title, price, image, category, description, rating } = state;
+  const { _id, title, price, image, category, description, rating } = state;
   const [cartData, setCartData] = useState(
     JSON.parse(localStorage.getItem("cart")) || []
   );
 
-  const currentItem = cartData.filter((each) => each.id === id);
+  const currentItem = cartData.filter((each) => each._id === _id);
 
   const [quantity, setQuanity] = useState(
     currentItem[0] ? currentItem[0].quantity : 0
@@ -19,21 +19,23 @@ const ProductDetails = () => {
 
   const handleAddtoCart = async () => {
     if (quantity === 0) {
-      const updatedCartData = cartData.filter((each) => each.id !== id);
+      const updatedCartData = cartData.filter(
+        (each) => each._id !== __staticRouterHydrationDataid
+      );
       localStorage.setItem("cart", JSON.stringify(updatedCartData));
       enqueueSnackbar("Item Removed cart", { variant: "warning" });
       return;
     }
     if (currentItem.length > 0) {
       // If item already exists in the cart
-      const updatedCartData = cartData.filter((each) => each.id !== id);
-      updatedCartData.push({ quantity, id, title, price, image });
+      const updatedCartData = cartData.filter((each) => each._id !== _id);
+      updatedCartData.push({ quantity, _id, title, price, image });
       localStorage.setItem("cart", JSON.stringify(updatedCartData));
       setCartData(updatedCartData);
       enqueueSnackbar("Item Quantity updated", { variant: "success" });
     } else {
       // Item not there in cart
-      cartData.push({ quantity, id, title, price, image });
+      cartData.push({ quantity, _id, title, price, image });
       localStorage.setItem("cart", JSON.stringify(cartData));
       setCartData(cartData);
       enqueueSnackbar("Item Added in the cart", { variant: "success" });
@@ -41,7 +43,7 @@ const ProductDetails = () => {
   };
 
   return (
-    <div key={id} className="d-flex border border-secondary rounded p-4 m-3">
+    <div key={_id} className="d-flex border border-secondary rounded p-4 m-3">
       <div className="border border-secondary rounded p-4">
         <img src={image} className="w-100" height={600} />
       </div>

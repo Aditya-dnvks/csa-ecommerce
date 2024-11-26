@@ -11,7 +11,6 @@ import ProductDetails from "./components/product-details/product-details";
 
 function App() {
   const isLogin = localStorage.getItem("token");
-  console.log(isLogin);
   return (
     <>
       <Header />

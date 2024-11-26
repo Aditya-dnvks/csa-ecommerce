@@ -10,7 +10,7 @@ const Header = () => {
   const logout = () => {
     localStorage.removeItem("token");
     enqueueSnackbar("Logout successful!", { variant: "info" });
-    navigate("/");
+    window.location.reload();
   };
 
   return (

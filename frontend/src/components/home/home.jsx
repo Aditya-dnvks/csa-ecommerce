@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { AuthContext } from "../Auth/auth-context";
 import Login from "../login/login";
-import Products from "../products/Products.JSX";
+import Products from "../products/products";
 import { Heading } from "@radix-ui/themes";
 import CarouselItem from "./carousel";
 import { enqueueSnackbar } from "notistack";
@@ -59,7 +59,7 @@ const Home = () => {
       const response = await axios.post(
         "http://localhost:3000/products/",
         {
-          title: "Mens Cotton Jacket",
+          title: "Dummy Mens Cotton Jacket",
           price: 55.99,
           description:
             "great outerwear jackets for Spring/Autumn/Winter, suitable for many occasions, such as working, hiking, camping, mountain/rock climbing, cycling, traveling or other outdoors. Good gift choice for you or your family member. A warm hearted love to Father, husband or son in this thanksgiving or Christmas Day.",
@@ -90,11 +90,14 @@ const Home = () => {
       {!isLogin ? (
         <Login />
       ) : (
-        <div>
+        <div className="text-center">
           <CarouselItem />
-          <button className="btn btn-primary" onClick={postProduct}>
+          <button
+            className="btn btn-primary text-center m-4"
+            onClick={postProduct}
+          >
             {" "}
-            Add Product
+            Add Dummy Product
           </button>
           <Heading className="text-center m-3"> Our Products:</Heading>
           {loader ? (
