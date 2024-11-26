@@ -67,7 +67,6 @@ export const AuthProvider = ({ children }) => {
       return;
     } else {
       usersData.push(formData);
-      console.log(usersData, "after pushing");
       localStorage.setItem("users", JSON.stringify(usersData));
       enqueueSnackbar("Account created successfully. you can login now!", {
         variant: "success",

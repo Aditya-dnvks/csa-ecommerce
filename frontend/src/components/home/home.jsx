@@ -15,26 +15,6 @@ const Home = () => {
 
   const isLogin = localStorage.getItem("token"); // null --- "null"
 
-  const passwords = ["fff", "tyyy", "tyhrtyh", "ythtyhtyjyj", "htyjhtyj"];
-
-  // const filteredArr = [];
-
-  // for (let i = 0; i < passwords.length; i++) {
-  //   if (passwords[i].length >= 6) {
-  //     filteredArr.push(passwords[i]);
-  //   }
-  // }
-
-  // console.log(filteredArr, "Filter Array-Imperative");
-
-  const filteredArr = passwords.filter(filtering);
-
-  function filtering(each) {
-    return each.length > 6;
-  }
-
-  console.log(filteredArr, "filtered arr - Declarative");
-
   useEffect(() => {
     document.title = "CSA Bazaar";
     const fetchData = async () => {
@@ -80,7 +60,6 @@ const Home = () => {
         }
       );
 
-      console.log(response.data);
       enqueueSnackbar("Product added succesfully", { variant: "success" });
     } catch (error) {
       console.error(error.message);

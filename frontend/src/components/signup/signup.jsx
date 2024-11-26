@@ -14,8 +14,6 @@ const Signup = () => {
     lastName: "",
   });
 
-  console.log("new feature by heamnth");
-
   const navigate = useNavigate();
 
   const { signUp } = useContext(AuthContext);
