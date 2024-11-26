@@ -39,7 +39,9 @@ const Home = () => {
     document.title = "CSA Bazaar";
     const fetchData = async () => {
       try {
-        const resp = await axios.get("http://localhost:3000/products");
+        const resp = await axios.get(
+          "https://csa-ecommerce.onrender.com/products"
+        );
         setProducts(resp.data);
       } catch (err) {
         enqueueSnackbar(`${err.message}`, {
@@ -57,7 +59,7 @@ const Home = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.post(
-        "http://localhost:3000/products/",
+        "https://csa-ecommerce.onrender.com/products/",
         {
           title: "Dummy Mens Cotton Jacket",
           price: 55.99,

@@ -36,7 +36,7 @@ const Signup = () => {
     /// register a user --- > new data to be posted in database
     try {
       const response = await axios.post(
-        "http://localhost:3000/user/register",
+        "https://csa-ecommerce.onrender.com/user/register",
         formData,
         { ContentType: "application/json" }
       );
