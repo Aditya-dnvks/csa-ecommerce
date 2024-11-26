@@ -15,7 +15,7 @@ const Cart = () => {
 
   const addQuantity = (id) => {
     const filteredCart = cartData.map((each) => {
-      if (each.id !== id) {
+      if (each._id !== id) {
         return each;
       } else {
         return { ...each, quantity: each.quantity + 1 };
@@ -28,13 +28,13 @@ const Cart = () => {
 
   const removeQuantity = (id, quantity) => {
     if (quantity === 1) {
-      const updatedCartData = cartData.filter((each) => each.id !== id);
+      const updatedCartData = cartData.filter((each) => each._id !== id);
       localStorage.setItem("cart", JSON.stringify(updatedCartData));
       setCartData(updatedCartData);
       return;
     }
     const filteredCart = cartData.map((each) => {
-      if (each.id !== id) {
+      if (each._id !== id) {
         return each;
       } else {
         return { ...each, quantity: each.quantity - 1 };
@@ -46,7 +46,7 @@ const Cart = () => {
   };
 
   const removeItem = (id) => {
-    const updatedCartData = cartData.filter((each) => each.id !== id);
+    const updatedCartData = cartData.filter((each) => each._id !== id);
     localStorage.setItem("cart", JSON.stringify(updatedCartData));
     setCartData(updatedCartData);
   };

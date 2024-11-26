@@ -39,6 +39,7 @@ const Login = () => {
       );
       enqueueSnackbar("User Login successfully", { variant: "success" });
       localStorage.setItem("token", response.data.jwtToken);
+      window.location.reload();
       navigate("/");
     } catch (err) {
       enqueueSnackbar(err.message, { variant: "error" });

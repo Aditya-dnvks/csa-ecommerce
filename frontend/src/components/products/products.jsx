@@ -44,15 +44,15 @@ const Products = (props) => {
       <div className="row d-flex flex-wrap justify-content-center mt-4">
         {filteredProducts.length > 0 ? (
           filteredProducts.map((each) => {
-            const { id, title, price, image, category, description, rating } =
+            const { _id, title, price, image, category, description, rating } =
               each;
             return (
               <div
                 className="col-3 card-container p-4 m-3"
                 onClick={() =>
-                  navigate(`/products/${id}`, {
+                  navigate(`/products/${_id}`, {
                     state: {
-                      id,
+                      _id,
                       title,
                       price,
                       image,
@@ -62,11 +62,11 @@ const Products = (props) => {
                     },
                   })
                 }
-                key={id}
+                key={_id}
               >
                 <Card.Body className="d-flex flex-column justify-content-space-around">
                   <img src={image} className="w-100" height={300} />
-                  <Heading className="heading text-center mt-3">
+                  <Heading className="heading1 text-center mt-3">
                     {title}
                   </Heading>
 
@@ -74,9 +74,9 @@ const Products = (props) => {
                     <Button
                       className="mt-3"
                       onClick={() =>
-                        navigate(`/products/${id}`, {
+                        navigate(`/products/${_id}`, {
                           state: {
-                            id,
+                            _id,
                             title,
                             price,
                             image,
