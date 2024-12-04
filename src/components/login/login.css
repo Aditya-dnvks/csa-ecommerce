@@ -11,16 +11,7 @@
 
 .bg-container {
   height: 85vh;
-  text-align: center;
-  padding: 10px;
-  margin: 10px;
-  height: 130px;
-  width: 150px;
-  background-color: #fff;
-  border: 1px solid #dee2e6;
-  border-radius: 8px;
-  box-shadow:0 2px 5px rgba(193, 139, 139, 0.1) ;
-  
+ 
 }
 .inputs{
   margin: 20px;
