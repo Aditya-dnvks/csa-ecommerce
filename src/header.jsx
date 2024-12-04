@@ -1,6 +1,10 @@
 import { Link } from "react-router-dom";
 import reactLogo from "./assets/react.svg";
+import { useContext } from "react";
+import { AuthContext } from "./components/Auth/auth-context";
 const Header = () => {
+
+  const { isLogin} = useContext(AuthContext);
   return (
     <nav className="bg-dark d-flex justify-content-between align-items-center">
       <Link to="/">
@@ -8,9 +12,13 @@ const Header = () => {
       </Link>
 
       <ul className="d-flex justify-content-end align-items-center">
-        <li className="m-3">
+
+      {
+        isLogin && (<li className="m-3">
           <Link to="/">Home</Link>
-        </li>
+          </li>)
+      }
+    
         <li className="m-3">
           <Link to="/login">Login</Link>
         </li>

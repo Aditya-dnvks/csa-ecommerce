@@ -1,24 +1,30 @@
 import { Button, Heading, TextField } from "@radix-ui/themes";
 import "./login.css";
-import { useState } from "react";
-
+import { useContext, useState } from "react";
+import { AuthContext } from "../Auth/auth-context";
 
 const Login = () => {
   const [formData, setFormData] = useState({
      email: " ",
      password: " ",
     });
+
+    const { login, setLogin} = useContext(AuthContext);
+  
     const onHandleChange = (event) => {
     const name = event.target.name;
     const value = event.target.value;
     setFormData({ ... formData, [name]: value });
     };
+
     const submitHandler = (e) =>{
       e.preventDefault();
       console.log(formData,"form data sucessfully submited");
+      login(formData)
+      setLogin(true);
+      
     }
-
-  
+ 
 
   return (
     <div className="d-flex flex-row justify-content-around align-items-center bg-container">
