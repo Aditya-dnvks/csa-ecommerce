@@ -3,6 +3,7 @@ import "./signup.css";
 import { useContext, useState } from "react";
 import { AuthContext } from "../Auth/auth-context";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Signup = () => {
   const [formData, setFormData] = useState({
@@ -26,7 +27,7 @@ const Signup = () => {
   const submitHandler = (e) => {
     e.preventDefault();
     signUp(formData);
-    navigate("/");
+ 
   };
 
   return (
@@ -62,6 +63,7 @@ const Signup = () => {
         ></TextField.Root>
         
         <div className="text-center">
+        <p>Don't have account ? <span><Link to="/login">Login</Link></span></p>
           <Button type="submit">Sign Up</Button>
         </div>
       </form>
