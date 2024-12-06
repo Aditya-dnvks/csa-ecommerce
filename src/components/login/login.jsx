@@ -2,6 +2,7 @@ import { Button, Heading, TextField } from "@radix-ui/themes";
 import "./login.css";
 import { useContext, useState } from "react";
 import { AuthContext } from "../Auth/auth-context";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -21,7 +22,7 @@ const Login = () => {
       e.preventDefault();
       console.log(formData,"form data sucessfully submited");
       login(formData)
-      setLogin(true);
+ 
       
     }
  
@@ -47,6 +48,7 @@ const Login = () => {
           type="password"
         ></TextField.Root>
         <div className="text-center">
+        <p>Don't have account <span><Link to="/signup">Signup</Link></span></p>
           <Button type="submit">Login</Button>
         </div>
       </form>

@@ -1,6 +1,8 @@
 import { Button, TextField, Heading } from "@radix-ui/themes";
 import "./signup.css";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { AuthContext } from "../Auth/auth-context";
+import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
   const [formData, setFormData] = useState({
@@ -9,14 +11,22 @@ const Signup = () => {
     firstName: " ",
     lastName: " ",
   });
+  const navigate =useNavigate();
+
+  const {signUp} = useContext(AuthContext);
+
+
+
   const onHandleChange = (event) => {
     const name = event.target.name;
     const value = event.target.value;
     setFormData({ ...formData, [name]: value });
   };
+
   const submitHandler = (e) => {
     e.preventDefault();
-    console.log(formData, "form data sucessfully submited");
+    signUp(formData);
+    navigate("/");
   };
 
   return (
@@ -50,6 +60,7 @@ const Signup = () => {
           type="password"
           onChange={onHandleChange}
         ></TextField.Root>
+        
         <div className="text-center">
           <Button type="submit">Sign Up</Button>
         </div>
