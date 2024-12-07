@@ -26,7 +26,18 @@ const Header = () => {
 
         )
        }
-       
+
+          {/* {
+        !isLogin && (
+        <li className="m-3">
+          <Link to="/signup">SignUp</Link>
+        </li>
+
+        )
+       } */}
+
+
+
         <li className="m-3">
           <Link to="/cart">Cart</Link>
         </li>
