@@ -23,8 +23,9 @@ export const AuthProvider = ({ children }) => {
      console.log(filteredArr,"filteredArr");
 
      if(filteredArr.length> 0){
-       enqueueSnackbar("succesfully Login",{variant:"success"})
        setLogin(true);
+       localStorage.setItem("isLogin",JSON.stringify(true));
+       enqueueSnackbar("Succesfully Login",{variant:"success"})
        navigate("/");
       }else{
        enqueueSnackbar("Wrong email or password",{variant:"error"});
@@ -34,8 +35,11 @@ export const AuthProvider = ({ children }) => {
   };
 
      const logout=async()=>{
-      enqueueSnackbar("succesfully logout",{variant:"info"})
-      setLogin(false);
+       setLogin(false);
+       localStorage.setItem("isLogin",JSON.stringify(false));
+       enqueueSnackbar("Succesfully Logout",{variant:"info"});
+       navigate("/login");
+       
      }
 
     const signUp = async (formData) => {
@@ -55,7 +59,7 @@ export const AuthProvider = ({ children }) => {
           return 
          }else{
           usersData.push(formData);
-          console.log(usersData," userdata after pushing......");
+         
           localStorage.setItem("users", JSON.stringify(usersData))
           navigate("/");
 

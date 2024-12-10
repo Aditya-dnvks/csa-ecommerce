@@ -29,7 +29,7 @@ const Login = () => {
 
   return (
     <div className="d-flex flex-row justify-content-around align-items-center bg-container">
-      <img src="https://img.freepik.com/free-vector/tablet-login-concept-illustration_114360-7963.jpg?semt=ais_hybrid" />
+      <img src="https://img.freepik.com/free-vector/tablet-login-concept-illustration_114360-7963.jpg" />
       <form className="FormRoot"  onSubmit={submitHandler}>
         <Heading className="text-center">Login Form</Heading>
         <TextField.Root

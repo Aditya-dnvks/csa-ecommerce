@@ -11,6 +11,7 @@ const Signup = () => {
     password: " ",
     firstName: " ",
     lastName: " ",
+    // confirmPassword:" ",
   });
   const navigate =useNavigate();
 
@@ -61,6 +62,13 @@ const Signup = () => {
           type="password"
           onChange={onHandleChange}
         ></TextField.Root>
+         {/* <TextField.Root
+          placeholder="Confirm  Password"
+          className="m-4"
+          name="confirmPassword"
+          type="password"
+          onChange={onHandleChange}
+        ></TextField.Root> */}
         
         <div className="text-center">
         <p>Don't have account ? <span><Link to="/login">Login</Link></span></p>
