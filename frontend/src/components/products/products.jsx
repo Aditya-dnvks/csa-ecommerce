@@ -1,17 +1,16 @@
 import { Card } from "react-bootstrap";
 import "./products.css";
-import { Button, Heading, Text } from "@radix-ui/themes";
+import { Button, Heading } from "@radix-ui/themes";
 import { useNavigate } from "react-router-dom";
 import { InputAdornment, TextField } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import { useState } from "react";
-import { FilterRounded } from "@mui/icons-material";
 
 const Products = (props) => {
   const [searchText, setSearch] = useState("");
   const { products } = props; //de-strucute=tng props
   const [filteredProducts, setFilteredProducts] = useState(products);
-  const x = 10;
+
   const navigate = useNavigate();
 
   const handleChange = (e) => {

@@ -31,10 +31,10 @@ const authentication = (req, res, next) => {
 };
 router.post("/", authentication, postProducts); //http://localhost:3000/products // Create
 
-router.put("/:id", updateProductById); // Update
+router.put("/:id", authentication, updateProductById); // Update
 //localhost:3000/products/:id
 
-router.delete("/:id", deleteProductById); //Delete
+router.delete("/:id", authentication, deleteProductById); //Delete
 
 module.exports = router;
 //MVC
