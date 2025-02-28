@@ -26,7 +26,7 @@ const CartDetails = (props) => {
             </Button>
           </div>
 
-          <p>
+          <p className="mt-2">
             <b>Price:</b>
             {price}
           </p>
